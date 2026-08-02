@@ -1,18 +1,60 @@
 aid: bespoke-post
 name: Bespoke Post
-description: 'Bespoke Post is a company surfaced via the API Evangelist harvest backlog (source: secondary-market)
-  and added to the network as a stub for full-pipeline profiling.'
+description: 'Bespoke Post is a New York City direct-to-consumer men''s lifestyle retailer
+  founded in 2011 by Rishi Prabhu and Steven Szaronos. It sells curated menswear, gear
+  and home goods through a free-to-join membership: members answer an onboarding quiz,
+  are offered a personalized monthly "Box of Awesome" shipment they can preview, swap
+  or skip, and buy at member pricing. Alongside third-party independent brands the
+  company operates its own labels, including Line of Trade and Fieldworth (apparel),
+  Halfday (travel), Wren (outdoor), Ash and Fir (home and fragrance) and Marcellin
+  (kitchen and bar). Bespoke Post publishes no public developer portal, API documentation
+  or machine-readable specification. It does run an internal storefront API under
+  /api/ on its own domain and - unusually for a retailer - names eight of those paths
+  in robots.txt with explicit Allow directives for AI agents including GPTBot,
+  ChatGPT-User, OAI-Searchbot, ClaudeBot, anthropic-ai, PerplexityBot, meta-externalagent
+  and cohere-ai, while disallowing /api/ to every other agent.'
 url: https://raw.githubusercontent.com/api-evangelist/bespoke-post/refs/heads/main/apis.yml
+image: https://avatars.githubusercontent.com/u/2020234?v=4
 x-type: company
 x-source: harvest:secondary-market
-x-tier: stub
-x-tier-reason: harvest
 specificationVersion: '0.20'
 created: '2026-08-02'
 modified: '2026-08-02'
 tags:
 - Company
-apis: []
+- E-Commerce
+- Retail
+- Subscription
+- Direct to Consumer
+- Consumer Goods
+- Apparel
+- Men's Lifestyle
+apis:
+- name: Bespoke Post Storefront API
+  description: 'Undocumented first-party storefront API serving the bespokepost.com
+    web experience. It is not published as a developer product: there is no portal,
+    no reference documentation, no specification and no authentication guide. Its
+    existence and eight of its paths are asserted by Bespoke Post itself in robots.txt,
+    where they carry explicit Allow directives for named AI agents. The paths cover
+    product collections, the product catalog, the current user session, carts, monthly
+    box assignments, personalized "for you" assignments, user segments and the
+    onboarding quiz questions. Endpoints sit behind Cloudflare bot management and
+    returned HTTP 403 to every probe, so no response contract was observed.'
+  humanURL: https://www.bespokepost.com/
+  baseURL: https://www.bespokepost.com/api/
+  tags:
+  - E-Commerce
+  - Storefront
+  - Catalog
+  x-status: undocumented
+  x-evidence:
+    source: https://www.bespokepost.com/robots.txt
+    fetched: '2026-08-02'
+    http_status: 200
+    observed_endpoint_status: '403 (Cloudflare bot challenge)'
+  properties:
+  - type: AgenticAccess
+    url: agentic-access/bespoke-post-agentic-access.yml
 maintainers:
 - FN: Kin Lane
   email: kin@apievangelist.com
@@ -20,4 +62,44 @@ maintainers:
   email: info@apis.io
 common:
 - type: Website
+  url: https://www.bespokepost.com/
+- type: Support
+  url: https://support.bespokepost.com/
+- type: Contact
+  url: https://www.bespokepost.com/contact
+- type: Blog
+  name: Field Guide
+  url: https://www.bespokepost.com/field-guide
+- type: GitHubOrganization
+  url: https://github.com/bespokepost
+- type: Pricing
+  name: Membership
+  url: https://www.bespokepost.com/subscription
+- type: SignUp
+  url: https://www.bespokepost.com/users/sign_up
+- type: Login
+  url: https://www.bespokepost.com/users/sign_in
+- type: TermsOfService
+  url: https://www.bespokepost.com/terms
+- type: PrivacyPolicy
+  url: https://www.bespokepost.com/privacy
+- type: Accessibility
+  url: https://www.bespokepost.com/accessibility
+- type: Careers
+  url: https://www.bespokepost.com/careers
+- type: Press
+  url: https://www.bespokepost.com/press
+- type: AgenticAccess
+  url: agentic-access/bespoke-post-agentic-access.yml
+- type: DomainSecurity
+  url: security/bespoke-post-domain-security.yml
+- type: LLMsTxt
+  url: llms/bespoke-post-llms.txt
+- type: SecondaryMarket
+  name: Forge Global
   url: https://forgeglobal.com/bespoke-post_stock/
+x-enrichment:
+  date: '2026-08-02'
+  status: enriched
+  artifacts_added: 5
+  pass: local-v1

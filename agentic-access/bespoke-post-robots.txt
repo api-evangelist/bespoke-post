@@ -1,0 +1,41 @@
+User-agent: Googlebot
+User-agent: Googlebot-Image
+User-agent: Bingbot
+Allow: /api/collections/
+Allow: /api/products/
+Allow: /api/current_user?
+Allow: /api/current_user/carts
+Allow: /api/current_user/box_assignments
+Allow: /api/current_user/for_you_assignments
+Allow: /api/user_segments/
+Allow: /api/questions/
+
+User-agent: GPTBot
+User-agent: ChatGPT-User
+User-agent: OAI-Searchbot
+User-agent: ClaudeBot
+User-agent: anthropic-ai
+User-agent: PerplexityBot
+User-agent: meta-externalagent
+User-agent: cohere-ai
+Allow: /api/collections/
+Allow: /api/products/
+Allow: /api/current_user?
+Allow: /api/current_user/carts
+Allow: /api/current_user/box_assignments
+Allow: /api/current_user/for_you_assignments
+Allow: /api/user_segments/
+Allow: /api/questions/
+
+User-agent: *
+Disallow: /a/
+Disallow: /api/
+Disallow: /cart/
+Disallow: /d/
+Disallow: /land/
+Disallow: /products/search
+Disallow: /press
+Disallow: /account/
+Disallow: /order_returns_searches/
+
+Sitemap: https://www.bespokepost.com/sitemap.xml.gz

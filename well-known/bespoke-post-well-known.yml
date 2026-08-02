@@ -1,0 +1,61 @@
+generated: '2026-08-02'
+method: probed
+source: live probe of every known Bespoke Post host
+
+# No /.well-known/ document was recovered from any host. Recorded so a later
+# round does not re-probe blind. www.bespokepost.com and bespokepost.com sit
+# behind a Cloudflare bot challenge that answers 403 (HTML "Just a moment...")
+# to every path a non-verified client requests, including paths that are known
+# to exist (e.g. /sitemap.xml, which resolves 200 as /sitemap.xml.gz). A 403
+# here therefore means "not observable", NOT "confirmed absent".
+# support.bespokepost.com answers a genuine 404 for all of them.
+# api.bespokepost.com does not resolve (NXDOMAIN).
+
+hosts:
+  - host: https://www.bespokepost.com
+    reachable: true
+    challenge: cloudflare-bot-management
+    documents:
+      - {path: /.well-known/security.txt, status: 403, observable: false}
+      - {path: /.well-known/openid-configuration, status: 403, observable: false}
+      - {path: /.well-known/oauth-authorization-server, status: 403, observable: false}
+      - {path: /.well-known/api-catalog, status: 403, observable: false}
+      - {path: /.well-known/ai-plugin.json, status: 403, observable: false}
+      - {path: /.well-known/agent-card.json, status: 403, observable: false}
+      - {path: /.well-known/agent.json, status: 403, observable: false}
+  - host: https://bespokepost.com
+    reachable: true
+    challenge: cloudflare-bot-management
+    documents:
+      - {path: /.well-known/security.txt, status: 403, observable: false}
+      - {path: /.well-known/openid-configuration, status: 403, observable: false}
+      - {path: /.well-known/oauth-authorization-server, status: 403, observable: false}
+      - {path: /.well-known/api-catalog, status: 403, observable: false}
+      - {path: /.well-known/ai-plugin.json, status: 403, observable: false}
+      - {path: /.well-known/agent-card.json, status: 403, observable: false}
+      - {path: /.well-known/agent.json, status: 403, observable: false}
+  - host: https://support.bespokepost.com
+    reachable: true
+    challenge: null
+    documents:
+      - {path: /.well-known/security.txt, status: 404, observable: true}
+      - {path: /.well-known/openid-configuration, status: 404, observable: true}
+      - {path: /.well-known/oauth-authorization-server, status: 404, observable: true}
+      - {path: /.well-known/api-catalog, status: 404, observable: true}
+      - {path: /.well-known/ai-plugin.json, status: 404, observable: true}
+      - {path: /.well-known/agent-card.json, status: 404, observable: true}
+      - {path: /.well-known/agent.json, status: 404, observable: true}
+  - host: https://api.bespokepost.com
+    reachable: false
+    dns: NXDOMAIN
+    documents: []
+
+found: []
+
+x-evidence:
+  fetched: '2026-08-02'
+  method: curl HEAD/GET with browser and ClaudeBot user-agents
+  note: >-
+    Because the apex and www hosts are bot-challenged, no /.well-known/ pointer
+    is wired into apis.yml — nothing was actually observed. Re-probe from a
+    verified crawler IP would be required to settle presence.

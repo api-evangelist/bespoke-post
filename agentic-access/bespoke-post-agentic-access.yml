@@ -1,0 +1,145 @@
+generated: '2026-08-02'
+method: probed
+source: https://www.bespokepost.com/robots.txt
+
+# WHAT THIS IS
+# Bespoke Post publishes no OpenAPI and no `x-agentic-access` contract. It does,
+# however, publish a machine-readable, AI-agent-specific access policy in its
+# robots.txt: eight named AI crawlers/agents are granted explicit `Allow:` access
+# to eight named /api/ paths, while the wildcard `User-agent: *` group is
+# `Disallow: /api/`. That is an affirmative, provider-authored statement about
+# which agents may call which API surfaces — captured here verbatim.
+#
+# SCOPE + LIMITS (read before using)
+#   - This is a PATH-level allowlist, not an operation-level execution contract.
+#     No action-class, consequence, token-TTL, or escalation semantics are
+#     published; the fields below are recorded, not inferred.
+#   - robots.txt is advisory. It is not enforcement, and it grants no credential.
+#   - The endpoints themselves sit behind a Cloudflare bot challenge (HTTP 403 to
+#     a non-verified client), so their response contracts were NOT observed.
+#     Their existence is asserted by the provider, not confirmed by us.
+
+posture:
+  published_contract: false          # no x-agentic-access / no OpenAPI
+  agent_policy_published: true       # robots.txt agent directives
+  policy_format: robots.txt
+  granularity: path
+  enforcement: advisory
+  default_for_unnamed_agents: disallow   # `User-agent: *` -> Disallow: /api/
+
+summary:
+  agents_named: 8
+  api_paths_allowed: 8
+  paths_disallowed_to_others: 9
+  authentication_documented: false
+  operation_level_semantics: false
+
+# Verbatim from the two Allow: groups in robots.txt.
+allowed_agents:
+  - agent: Googlebot
+    class: search
+  - agent: Googlebot-Image
+    class: search
+  - agent: Bingbot
+    class: search
+  - agent: GPTBot
+    class: ai-training
+    vendor: OpenAI
+  - agent: ChatGPT-User
+    class: ai-user-agent
+    vendor: OpenAI
+  - agent: OAI-Searchbot
+    class: ai-search
+    vendor: OpenAI
+  - agent: ClaudeBot
+    class: ai-training
+    vendor: Anthropic
+  - agent: anthropic-ai
+    class: ai-user-agent
+    vendor: Anthropic
+  - agent: PerplexityBot
+    class: ai-search
+    vendor: Perplexity
+  - agent: meta-externalagent
+    class: ai-training
+    vendor: Meta
+  - agent: cohere-ai
+    class: ai-training
+    vendor: Cohere
+
+# The API surface the provider itself names. Read-only by nature of robots.txt
+# (which governs retrieval, i.e. GET); no write path is allowed to any agent.
+allowed_paths:
+  - path: /api/collections/
+    action_class: connected
+    consequence: read
+    note: product collections
+  - path: /api/products/
+    action_class: connected
+    consequence: read
+    note: product catalog
+  - path: /api/current_user?
+    action_class: connected
+    consequence: read
+    note: session/account read; requires an authenticated session
+  - path: /api/current_user/carts
+    action_class: connected
+    consequence: read
+    note: cart read for the current session
+  - path: /api/current_user/box_assignments
+    action_class: connected
+    consequence: read
+    note: monthly box assignment for the current member
+  - path: /api/current_user/for_you_assignments
+    action_class: connected
+    consequence: read
+    note: personalized recommendation assignments
+  - path: /api/user_segments/
+    action_class: connected
+    consequence: read
+    note: audience/segment metadata
+  - path: /api/questions/
+    action_class: connected
+    consequence: read
+    note: onboarding quiz questions
+
+# Explicitly withheld from every unnamed agent.
+disallowed_paths_wildcard:
+  - /a/
+  - /api/
+  - /cart/
+  - /d/
+  - /land/
+  - /products/search
+  - /press
+  - /account/
+  - /order_returns_searches/
+
+related_signals:
+  - kind: dns-txt
+    value: anthropic-domain-verification-bjwvph=17U94yLRvciNQNgGAhHsaTvDv
+    domain: bespokepost.com
+    note: >-
+      Anthropic domain-verification TXT record present on the apex domain,
+      consistent with the operator having claimed the domain with Anthropic.
+      Recorded as an observation only; it confers no API surface.
+
+gaps:
+  - No OpenAPI, AsyncAPI, or GraphQL schema published for the /api/ surface.
+  - No developer portal, authentication documentation, or rate-limit policy.
+  - No MCP server and no A2A agent card on any probed host.
+  - Endpoints are bot-challenged, so no agent can actually exercise the allowlist
+    without being an IP-verified crawler.
+
+x-evidence:
+  fetched: '2026-08-02'
+  url: https://www.bespokepost.com/robots.txt
+  http_status: 200
+  content_type: text/plain; charset=utf-8
+  file: bespoke-post-robots.txt
+  endpoint_probes:
+    - {url: 'https://www.bespokepost.com/api/collections/', http_status: 403, note: Cloudflare bot challenge}
+    - {url: 'https://www.bespokepost.com/api/products/', http_status: 403, note: Cloudflare bot challenge}
+    - {url: 'https://www.bespokepost.com/api/current_user', http_status: 403, note: Cloudflare bot challenge}
+    - {url: 'https://www.bespokepost.com/api/user_segments/', http_status: 403, note: Cloudflare bot challenge}
+    - {url: 'https://www.bespokepost.com/api/questions/', http_status: 403, note: Cloudflare bot challenge}
