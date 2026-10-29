@@ -64,48 +64,96 @@
 > Full detail: **[Where this data comes from](https://apievangelist.com/about/where-our-data-comes-from)**
 <!-- API-EVANGELIST-PROVENANCE:END -->
 
-Bespoke Post is a New York City direct-to-consumer men's lifestyle retailer founded in 2011
-by Rishi Prabhu and Steven Szaronos. It sells curated menswear, gear and home goods through a
-free-to-join membership — members answer an onboarding quiz, preview a personalized monthly
-"Box of Awesome" they can swap or skip, and buy at member pricing. Alongside independent
-third-party brands the company operates its own labels: Line of Trade and Fieldworth
-(apparel), Halfday (travel), Wren (outdoor), Ash and Fir (home and fragrance) and Marcellin
-(kitchen and bar).
+Bespoke Post is a New York City direct-to-consumer men's lifestyle retailer founded in 2011 by Rishi Prabhu and Steven Szaronos. It sells curated menswear, gear and home goods through a free-to-join membership: members answer an onboarding quiz, are offered a personalized monthly "Box of Awesome" shipment they can preview, swap or skip, and buy at member pricing. Alongside third-party independent brands the company operates its own labels, including Line of Trade and Fieldworth (apparel), Halfday (travel), Wren (outdoor), Ash and Fir (home and fragrance) and Marcellin (kitchen and bar). Bespoke Post publishes no public developer portal, API documentation or machine-readable specification. It does run an internal storefront API under /api/ on its own domain and - unusually for a retailer - names eight of those paths in robots.txt with explicit Allow directives for AI agents including GPTBot, ChatGPT-User, OAI-Searchbot, ClaudeBot, anthropic-ai, PerplexityBot, meta-externalagent and cohere-ai, while disallowing /api/ to every other agent.
 
-- Website: https://www.bespokepost.com/
-- Support: https://support.bespokepost.com/
-- Field Guide (blog): https://www.bespokepost.com/field-guide
-- GitHub: https://github.com/bespokepost
-- Secondary market: https://forgeglobal.com/bespoke-post_stock/
+**Areas:** Company · E-Commerce · Retail · Subscription · Direct to Consumer · Consumer Goods · Apparel · Men's Lifestyle
 
-## API posture
+## Bespoke Post on APIs.io
 
-Bespoke Post publishes **no developer portal, no API documentation and no machine-readable
-specification**. As of 2026-08-02 no OpenAPI, Swagger, AsyncAPI, GraphQL schema, MCP server
-or A2A agent card was found on any host probed (`www.bespokepost.com`, `bespokepost.com`,
-`support.bespokepost.com`; `api.bespokepost.com` does not resolve).
+Everything profiled for Bespoke Post is published on APIs.io rather than in this repository. Start at the provider page — **[apis.io/providers/bespoke-post/](https://apis.io/providers/bespoke-post/)** — or go straight to one of the APIs or properties below.
 
-What it does have is more interesting than nothing: an **undocumented storefront API** under
-`/api/`, eight of whose paths Bespoke Post names in its own `robots.txt` with explicit
-`Allow:` directives for eight AI agents — GPTBot, ChatGPT-User, OAI-Searchbot, ClaudeBot,
-anthropic-ai, PerplexityBot, meta-externalagent and cohere-ai — while `User-agent: *` is
-`Disallow: /api/`. That is a provider-authored, machine-readable agent access policy on a
-retailer with no developer program, captured in `agentic-access/`.
+### APIs (1)
 
-Note: `bespoke-api.readme.io` is a **different** company (an email-delivery API also called
-"Bespoke") and is not associated with Bespoke Post.
+- [Bespoke Post Storefront API](https://apis.io/apis/bespoke-post/bespoke-post-storefront-api/) — Undocumented first-party storefront API serving the bespokepost.com web experience. It is not published as a developer product: there is no portal, no…
 
-## Artifacts
+### Published properties
 
-| Path | What it is |
+Each property below is a page on APIs.io carrying the machine-readable artifact and what it says.
+
+#### Agentic access (1)
+
+Which operations an agent can call, which act, and which need a human in the loop.
+
+- [Bespoke Post Agentic Access](https://apis.io/agentic-access/bespoke-post/bespoke-post-agentic-access/)
+
+#### Security (1)
+
+Authentication, trust centre, and vulnerability disclosure.
+
+- [Bespoke Post Domain Security](https://apis.io/security/bespoke-post/bespoke-post-domain-security/)
+
+## Where to find this API
+
+Links to the company's own pages. This repository publishes no copy of their specifications — the canonical document is theirs and lives at the URLs below.
+
+- [Website](https://www.bespokepost.com/)
+- [Pricing](https://www.bespokepost.com/subscription)
+- [Sign up](https://www.bespokepost.com/users/sign_up)
+- [Support](https://support.bespokepost.com/)
+- [Blog](https://www.bespokepost.com/field-guide)
+- [Terms of service](https://www.bespokepost.com/terms)
+- [Privacy policy](https://www.bespokepost.com/privacy)
+- [GitHub](https://github.com/bespokepost)
+
+## API Evangelist rating
+
+**Kin Score 17.2** — emerging · rubric 0.24.0 · scored 2026-10-17
+
+| Facet | Score |
 |---|---|
-| `apis.yml` | APIs.json 0.20 index — identity, link properties, the storefront API entry |
-| `agentic-access/bespoke-post-agentic-access.yml` | The robots.txt AI-agent access policy, classified per path |
-| `agentic-access/bespoke-post-robots.txt` | Verbatim `robots.txt` (the source of that policy) |
-| `security/bespoke-post-domain-security.yml` | Probed TLS / HSTS / DNSSEC / CAA / SPF / DMARC |
-| `well-known/bespoke-post-well-known.yml` | Result of probing every `/.well-known/` discovery path |
-| `llms/bespoke-post-llms.txt` | Generated `llms.txt` for this provider |
+| Discoverability | 67.0 |
+| Contract quality | 0.0 |
+| Contract governance | 0.0 |
+| Operational transparency | 2.6 |
+| Developer ergonomics | 7.1 |
+| Access clarity | 44.7 |
 
-Not present, and correctly so: `openapi/`, `mcp/`, `a2a/`, `skills/`, `packages/`,
-`conventions/`, `errors/`, `lifecycle/`, `sandbox/`, `changelog/`. There is no published
-contract to ground them in, and none were fabricated.
+**Agent readiness 7.2** — agent-aware
+
+| Agent-readiness dimension | Result |
+|---|---|
+| Spec Presence | — |
+| Agentic Access | yes |
+| Reversibility Documented | — |
+| MCP Server | — |
+| Auth Clarity | — |
+| Idempotency | — |
+| Error Semantics | — |
+| OpenAPI Examples | — |
+| Rate Limit Signal | — |
+| Event Surface Described | — |
+| Agent Skills | — |
+| Well Known Catalog | — |
+| Consent Identity | — |
+| Agent Card | — |
+| Dry Run Mode | — |
+| Delegated Identity | — |
+| Protected Resource Metadata | — |
+| Dynamic Client Registration | — |
+| Agentic Commerce | — |
+
+**Regulatory alignment 13.7** — Horizontal (data, software, accessibility, platform)
+
+The rubric is published at [github.com/api-evangelist/kin-score](https://github.com/api-evangelist/kin-score). The per-check breakdown behind these numbers — which checks were earned, partial or missed — along with score history and how this provider compares to its peers, is available at [apis.io/providers/bespoke-post/](https://apis.io/providers/bespoke-post/).
+
+## How this profile is made
+
+API Evangelist profiles a company's public API surface the way a developer would find it: the website, developer portal and documentation, the specifications it publishes, its public repositories, and its pricing, status and changelog pages. From that it derives the properties above — contracts split per API, workflows, schemas, collections, governance rules, plans and rate limits — and scores them against the published [Kin Score rubric](https://github.com/api-evangelist/kin-score).
+
+The artifacts are published on [APIs.io](https://apis.io), not in this repository. This repository is the public record for Bespoke Post: the place to say something is wrong, missing or out of date, and to ask for a re-score or a removal.
+
+## Open an issue
+
+- **Something about this listing** — a wrong description, a missing API, a stale artifact or a question about the rating: [open an issue on this repository](https://github.com/api-evangelist/bespoke-post/issues/new).
+- **A new API, or one that is not in the catalog yet** — [submit it on APIs.io](https://apis.io/add/).
+- **Anything else** — [the APIs.io inbox](https://github.com/api-search/inbox/issues/new) or [info@apievangelist.com](mailto:info@apievangelist.com).
